@@ -1,0 +1,1049 @@
+@import "./base";
+@import "./component";
+@import "./mixins";
+@import "./variables";
+@import "./colors";
+
+.banner-up {
+  img {
+    width: 100%;
+    max-height: 100px;
+  }
+}
+
+/*استایل برای نوبار سایت*/
+.header {
+  margin: $margin-sections;
+  /*استایل برای منو بغل در حالت موبایل*/
+  .menu-m {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    z-index: 50;
+    transition: all 500ms;
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba($color-primary, 0.2);
+      opacity: 0;
+      transition: all 1000ms 500ms;
+      z-index: -1;
+    }
+    &.active {
+      right: 0;
+      .overlay {
+        opacity: 1;
+      }
+    }
+    .inner-menu-m {
+      height: 100vh;
+      background-color: $color-secondary;
+    }
+  }
+  /*استایل برای منو بغل در حالت موبایل*/
+  /*استایل برای منو سبد خرید*/
+  .cart-menu {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    z-index: 50;
+    transition: all 500ms;
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba($color-primary, 0.2);
+      opacity: 0;
+      transition: all 1000ms 500ms;
+      z-index: -1;
+    }
+    &.active {
+      left: 0;
+      .overlay {
+        opacity: 1;
+      }
+    }
+    .inner-cart-menu {
+      height: 100vh;
+      background-color: $color-secondary;
+      margin-right: auto;
+      position: relative;
+      .title {
+        @include flex-1;
+        padding: 1%;
+        font-weight: bold;
+        position: relative;
+        width: 100%;
+        &::after {
+          content: "";
+          display: block;
+          width: 80%;
+          height: 1.5px;
+          background-color: $color-text;
+          position: absolute;
+          top: calc(100% + 1px);
+          left: 10%;
+        }
+        .close-cart {
+          @include centering;
+          width: 50px;
+          height: 50px;
+          font-size: 35px;
+          color: $color-text;
+          cursor: pointer;
+        }
+      }
+      .content-cart {
+        width: 100%;
+        height: 70vh;
+        padding: 0 20px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        margin-top: 15px;
+        .card-cart {
+          padding: 5px;
+          background-color: $color-text;
+          position: relative;
+          border-radius: $border-radius-one;
+          margin: 10px 0;
+          .inner-card-cart {
+            .image {
+              width: 30%;
+              img {
+                width: 100%;
+              }
+            }
+            .price {
+              width: 70%;
+              padding: 5px;
+              @include flex-2;
+              flex-direction: column;
+              span {
+                background-color: $color-primary;
+                padding: 8px;
+                color: $color-text;
+                border-radius: $border-radius-one;
+                font-size: 0.8em;
+              }
+            }
+            .close-card-cart {
+              @include centering;
+              position: absolute;
+              top: 5%;
+              right: 2%;
+              width: 25px;
+              height: 25px;
+              background-color: red;
+              color: $color-text;
+              border-radius: 50%;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .price-cart {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        .all-price {
+          padding: 20px 0;
+          font-weight: bold;
+          color: $color-primary;
+          text-align: center;
+        }
+        .btns-cart {
+          padding: 20px 0;
+          @include flex-2;
+          flex-wrap: wrap;
+          a {
+            color: $color-text;
+            display: block;
+            margin: 0 10px;
+            &:hover {
+              font-size: 1.05em;
+              transition: all 500ms;
+            }
+          }
+        }
+      }
+    }
+  }
+  /*استایل برای منو سبد خرید*/
+
+  .container {
+    .right-navbar {
+      // width: 80%;
+      padding: 0 0 0 10px;
+      .right-up-navbar {
+        height: 70px;
+        .row {
+          align-items: center;
+        }
+        .content-hamburger {
+          @include centering;
+          justify-content: start;
+          .hamburger-menu {
+            @include flex-1;
+            flex-direction: column;
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            background-color: $color-primary;
+            padding: 10px;
+            border-radius: $border-radius-one;
+            position: relative;
+            z-index: 55;
+            transition: all 500ms;
+            .line {
+              width: 100%;
+              height: 5px;
+              background-color: $color-secondary;
+              transition: all 500ms 200ms;
+            }
+            .line:nth-child(2) {
+              opacity: 1;
+            }
+            &.active {
+              position: fixed;
+              top: 20px;
+
+              .line {
+                margin-right: 22px;
+              }
+              .line:nth-child(1) {
+                transform: rotate(135deg) translateY(-17px);
+              }
+              .line:nth-child(2) {
+                transform: translateX(-30px);
+                opacity: 0;
+              }
+              .line:nth-child(3) {
+                transform: rotate(-135deg) translateY(17px);
+              }
+            }
+          }
+        }
+        .logo-navbar {
+          img {
+            width: 100%;
+            height: 70px;
+          }
+        }
+        .search-navbar {
+          @include centering;
+          padding: 10px;
+
+          .search-inner-navbar {
+            @include flex-1;
+            width: 100%;
+            overflow: hidden;
+            outline: $border-one;
+            border-radius: $border-radius-one;
+            .form-navbar {
+              @include flex-1;
+              width: 100%;
+              .btn-search-navbar {
+                @include centering;
+                border-radius: $border-radius-one;
+                width: 40px;
+                height: $height-one;
+                background-color: $color-primary;
+                border: none;
+              }
+              .group-input-navbar {
+                width: calc(100% - 195px);
+                height: 100%;
+                .input-navbar {
+                  width: 100%;
+                  height: $height-one;
+                  border: none;
+                  &:focus {
+                    border: none;
+                    outline: none;
+                  }
+                  &::placeholder {
+                    color: $color-primary;
+                  }
+                }
+              }
+              .grouping-navbar {
+                @include centering;
+                width: 150px;
+                height: $height-one;
+                border-radius: $border-radius-one;
+                border: $border-two;
+                overflow: hidden;
+                .grouping-navbar-select {
+                  border: none;
+                  width: 100%;
+                  font-weight: bold;
+                  color: $color-primary;
+                  .option {
+                    padding: 10px 0;
+                    height: 20px;
+                    background-color: rgba(255, 0, 0, 0.5);
+                  }
+                }
+              }
+            }
+          }
+        }
+        .account-navbar {
+          padding: 0 10px;
+          height: 100%;
+          @include centering;
+          .inner-account-navbar {
+            @include flex-2;
+            background-color: $color-primary;
+            width: 100%;
+            height: $height-one;
+            border-radius: $border-radius-one;
+            padding: 5px 0;
+            img {
+              width: 30px;
+              height: 100%;
+              filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(134deg)
+                brightness(106%) contrast(101%);
+            }
+            .text-inner-account {
+              text-align: center;
+              font-weight: bold;
+              color: $color-text;
+            }
+          }
+        }
+      }
+      .right-down-navbar {
+        height: 70px;
+
+        padding: 10px 0;
+        .row {
+          height: 100%;
+        }
+        .menu-navbar {
+          height: 100%;
+          padding: 0 0 0 5px;
+          .inner-menu-navbar {
+            height: 100%;
+            border-radius: $border-radius-one;
+            border: $border-one;
+            .menu {
+              @include flex-1;
+              padding: 0 10px;
+              height: 100%;
+              .item-menu {
+                @include centering;
+                height: 100%;
+
+                .item-menu-link {
+                  color: $color-primary;
+                  transition: all 500ms;
+                  position: relative;
+                  &::after {
+                    content: "";
+                    display: block;
+                    width: 0%;
+                    height: 3px;
+                    background-color: $color-primary;
+                    position: absolute;
+                    bottom: -5px;
+                    right: 50%;
+                    transition: all 500ms;
+                    border-radius: 3px;
+                  }
+                  &:hover {
+                    font-size: 1.2rem;
+                    &::after {
+                      width: 100%;
+                      right: 0;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .btns-navbar {
+          @include flex-1;
+          padding: 0 20px 0 0;
+
+          .cart,
+          .health {
+            position: relative;
+            height: 50px;
+            padding: 10px;
+            background-color: $color-primary;
+            border-radius: $border-radius-one;
+            cursor: pointer;
+            .number-cart {
+              @include centering;
+              width: 17px;
+              height: 17px;
+              position: absolute;
+              bottom: 1px;
+              right: 1px;
+              padding: 3px;
+              border-radius: 50%;
+              background-color: $color-secondary;
+              color: $color-text;
+            }
+          }
+          img {
+            width: 100%;
+            height: 100%;
+            filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(134deg)
+              brightness(106%) contrast(101%);
+          }
+        }
+      }
+    }
+    .left-navbar {
+      // width: 20%;
+
+      padding: 10px 0;
+      height: 140px;
+      .row {
+        height: 100%;
+        .item-left-navbar {
+          @include centering;
+          height: 100%;
+          padding: 0 10px 0 0;
+          .inner-item-left-navbar {
+            width: 100%;
+            height: 100%;
+            border-radius: $border-radius-one;
+            padding: 10px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+  /*استایل برای منو فیکس درحالت موبایل سایت*/
+  .menu-fixed-mobile {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: rgba($color-primary, 0.9);
+    width: 100%;
+    height: 70px;
+
+    z-index: 15;
+    .container {
+      height: 100%;
+    }
+    .row {
+      height: 100%;
+      width: 100%;
+    }
+    .inner-menu-fixed {
+      height: 100%;
+      @include centering;
+      font-size: 12px;
+      img {
+        width: 15px;
+      }
+      .centering {
+        flex-direction: column;
+        .title {
+          margin-top: 5px;
+          color: $color-text;
+        }
+      }
+    }
+  }
+  /*استایل برای منو فیکس درحالت موبایل سایت*/
+}
+/*استایل برای نوبار سایت*/
+
+/*Start Main*/
+.main {
+  margin: $margin-sections;
+
+  .container {
+    padding: 0;
+    /*استایل برای اسلایدر معرفی محصولات*/
+    .slider-introduction {
+      width: 100%;
+
+      border-radius: $border-radius-two;
+      overflow: hidden;
+      .swiper-one {
+        direction: rtl;
+        width: 100%;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+        span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+          background-color: $color-primary;
+        }
+        .swiper-scrollbar-drag {
+          background-color: $color-primary;
+        }
+      }
+    }
+    /*استایل برای اسلایدر معرفی محصولات*/
+
+    /* استایل برای قسمت سرویس ها */
+    .services {
+      margin: $margin-sections;
+      .inner-services {
+        margin: 0 auto;
+        background-color: $color-secondary;
+        border-radius: $border-radius-three;
+        position: relative;
+        z-index: -1;
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          top: calc(50% - 6%);
+          left: 7.5%;
+          width: 85%;
+          height: 12%;
+          background-color: $color-text;
+          z-index: -1;
+          border-radius: $border-radius-two;
+        }
+        img {
+          height: 60%;
+        }
+      }
+    }
+    /* استایل برای قسمت سرویس ها */
+    /* استایل برای قسمت محصولات پوستی */
+    .skin-products {
+      margin: $margin-sections;
+      .inner-skin-products {
+        .image-skin-products {
+          &:nth-child(1) {
+            padding: 0 0 0 10px;
+          }
+          &:nth-child(2) {
+            padding: 0 10px 0 0;
+          }
+        }
+      }
+    }
+    /* استایل برای قسمت محصولات پوستی */
+
+    /* استایل برای قسمت محصولات تخفیف دار */
+    .super-offer-products {
+      .inner-super-offer {
+        position: relative;
+        .slider-offer {
+          position: absolute;
+          top: 0;
+          left: 2.5%;
+
+          width: 62%;
+          height: 100%;
+          padding: 2% 0;
+          .swiper-slide {
+            height: 50%;
+            padding: 5px;
+            .swiper-inner-off {
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+    /* استایل برای قسمت محصولات تخفیف دار */
+    /*  استایل برای قسمت اینستاگرام*/
+    .instagram {
+      margin: $margin-sections;
+    }
+    /*  استایل برای قسمت اینستاگرام*/
+
+    /*استایل برای قسمت معرفی جشنواره*/
+    .festival {
+      margin: $margin-sections;
+      .inner-festival {
+        position: relative;
+        border-radius: $border-radius-one;
+        overflow: hidden;
+        background-image: url("../images/9999.png");
+
+        padding: 2.5%;
+        z-index: 1;
+        .cover {
+          position: absolute;
+          top: 0;
+          right: 0;
+          z-index: -1;
+        }
+        .festival-up {
+          z-index: 5;
+
+          min-height: 200px;
+          display: flex;
+          .header-festival {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row-reverse;
+            margin-right: auto;
+            .des-festival {
+              padding: 10px;
+              display: flex;
+              justify-content: center;
+              font-size: 10px;
+              .inner-des-festival {
+                border-radius: $border-radius-one;
+                background-color: red;
+                padding: 10px;
+                margin-top: auto;
+                background: rgb(255, 255, 255);
+                background: linear-gradient(
+                  90deg,
+                  transparent 0%,
+                  rgba(28, 28, 28, 1) 70%,
+                  rgba(28, 28, 28, 1) 100%,
+                  rgba(255, 255, 255, 1) 100%
+                );
+                color: $color-text;
+                .content-btn-festival {
+                  display: flex;
+                  justify-content: end;
+                  align-items: center;
+                  margin: 5px 0;
+                  .btn-festival {
+                    display: inline-block;
+                    margin: auto 0;
+                    border-radius: $border-radius-two;
+                    background-color: $color-btn-two;
+                    padding: 8px 8px 8px 18px;
+                    position: relative;
+                    z-index: 1;
+                    color: $color-text;
+                    &::after {
+                      content: "";
+                      display: block;
+                      width: 85%;
+                      height: 100%;
+                      position: absolute;
+                      top: 0%;
+                      right: 0;
+                      border-radius: $border-radius-two;
+                      background-color: $color-btn-one;
+                      z-index: -1;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .festival-down {
+          height: 300px;
+          .slider-festival {
+            height: 100%;
+            .swiper-slide {
+              height: 150px;
+              margin-top: 0 !important;
+              .swiper-inner-off {
+                height: calc(100% - 20px);
+              }
+            }
+          }
+        }
+      }
+    }
+    /*استایل برای قسمت معرفی جشنواره*/
+
+    /*قسمت مکمل ورزشی و محصولات آرایشی*/
+    .sports-supplement {
+      margin: $margin-sections;
+      .supplement-section {
+        position: relative;
+        &:nth-child(1) {
+          padding: 0 0 0 10px;
+        }
+        &:nth-child(2) {
+          padding: 0 10px 0 0;
+        }
+        .slider-supplement {
+          position: absolute;
+          top: 0%;
+          width: 50%;
+          height: 100%;
+          &.slider-supplement-1 {
+            left: calc(2.5% + 10px);
+          }
+          &.slider-supplement-2 {
+            left: 2.5%;
+          }
+          .swiper-slide {
+            @include centering;
+            height: 150px;
+            .title-card {
+              height: 100%;
+            }
+            .price-card {
+              height: 100%;
+            }
+            .swiper-inner-off {
+              height: 65%;
+            }
+          }
+          .swiper-button-prev,
+          .swiper-button-next {
+            color: $color-text;
+            left: 45%;
+            right: 45%;
+            transform: rotate(90deg) scale(0.7);
+          }
+          .swiper-button-next {
+            top: 6%;
+          }
+          .swiper-button-prev {
+            top: 94%;
+          }
+        }
+      }
+    }
+    /*قسمت مکمل ورزشی و محصولات آرایشی*/
+    /*قسمت مقالات*/
+    .articles {
+      .inner-articles {
+        .title-articles {
+          display: flex;
+          justify-content: center;
+          .title {
+            padding: 0 20px;
+            @include centering;
+            font-size: 28px;
+            color: $color-primary;
+          }
+          .right-title {
+            span {
+              font-weight: bold;
+              &:nth-child(10) {
+                font-size: 26px;
+              }
+              &:nth-child(9) {
+                font-size: 24px;
+              }
+              &:nth-child(8) {
+                font-size: 22px;
+              }
+              &:nth-child(7) {
+                font-size: 20px;
+              }
+              &:nth-child(6) {
+                font-size: 18px;
+              }
+              &:nth-child(5) {
+                font-size: 16px;
+              }
+              &:nth-child(4) {
+                font-size: 14px;
+              }
+              &:nth-child(3) {
+                font-size: 12px;
+              }
+              &:nth-child(2) {
+                font-size: 10px;
+              }
+              &:nth-child(1) {
+                font-size: 10px;
+              }
+            }
+          }
+          .left-title {
+            span {
+              font-weight: bold;
+              &:nth-child(1) {
+                font-size: 26px;
+              }
+              &:nth-child(2) {
+                font-size: 24px;
+              }
+              &:nth-child(3) {
+                font-size: 22px;
+              }
+              &:nth-child(4) {
+                font-size: 20px;
+              }
+              &:nth-child(5) {
+                font-size: 18px;
+              }
+              &:nth-child(6) {
+                font-size: 16px;
+              }
+              &:nth-child(7) {
+                font-size: 14px;
+              }
+              &:nth-child(8) {
+                font-size: 12px;
+              }
+              &:nth-child(9) {
+                font-size: 10px;
+              }
+              &:nth-child(10) {
+                font-size: 10px;
+              }
+            }
+          }
+        }
+        .slider-article {
+          padding: 20px 0px 20px 0;
+          .inner-slider-article {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+        .btn-article-all {
+          @include centering;
+          padding: 20px 0;
+          a {
+            padding: 10px 20px;
+            border-radius: $border-radius-two;
+            background-color: $color-primary;
+            color: $color-text;
+            transition: all 500ms;
+            &:hover {
+              box-shadow: 0px 1px 15px -1px $color-primary;
+            }
+          }
+        }
+      }
+    }
+    /*قسمت مقالات*/
+  }
+}
+/*End Main*/
+
+/*Start Footer*/
+.footer {
+  .container {
+    .header-footer {
+      margin: $margin-sections;
+      @include centering;
+      background-color: $color-primary;
+      padding: 20px 0;
+      border-radius: $border-radius-one;
+      .menu {
+        @include flex-1;
+        .item-menu {
+          .item-link {
+            color: $color-text;
+            position: relative;
+            &::after {
+              content: "";
+              display: block;
+              width: 0%;
+              height: 3px;
+              background-color: $color-text;
+              position: absolute;
+              bottom: -5px;
+              right: 50%;
+              transition: all 500ms;
+              border-radius: 3px;
+            }
+            &:hover {
+              &::after {
+                width: 100%;
+                right: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .company {
+    span {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    .up {
+      padding: 15px 0;
+      background-color: $color-primary;
+      text-align: center;
+      font-size: 20px;
+      color: $color-text;
+    }
+    .down {
+      padding: 15px 0;
+      background-color: #004621;
+      text-align: center;
+      font-size: 20px;
+      color: $color-primary;
+    }
+  }
+}
+/*End Footer*/
+
+@media (max-width: 992px) {
+  .main {
+    .container {
+      .sports-supplement {
+        .supplement-section {
+          &:nth-child(1) {
+            padding: 0 0 0;
+          }
+          &:nth-child(2) {
+            padding: 0 0 0;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    .container {
+      .right-navbar {
+        padding: 0 20px;
+      }
+    }
+  }
+  .main {
+    .container {
+      padding: 0 20px;
+
+      .skin-products {
+        .inner-skin-products {
+          .image-skin-products {
+            &:nth-child(1) {
+              padding: 0 0 0;
+            }
+            &:nth-child(2) {
+              padding: 0 0 0;
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+      .super-offer-products {
+        .inner-super-offer {
+          .slider-offer {
+            .swiper-wrapper {
+              align-items: center;
+            }
+            .swiper-slide {
+              height: 90%;
+            }
+          }
+        }
+      }
+      .festival {
+        .inner-festival {
+          padding: 50px 2.5% 0;
+          .cover {
+          }
+          .festival-up {
+            .header-festival {
+              display: flex;
+              justify-content: space-between;
+              flex-direction: column-reverse;
+              margin-right: auto;
+              width: 100%;
+              .des-festival {
+                width: 85%;
+                margin-right: auto;
+              }
+            }
+          }
+          .festival-down {
+            height: 150px;
+          }
+        }
+      }
+      .sports-supplement {
+        .supplement-section {
+          &:nth-child(1) {
+            padding: 0 0 0;
+          }
+          &:nth-child(2) {
+            padding: 0 0 0;
+            margin-top: 10px;
+          }
+        }
+      }
+      .services {
+        .inner-services {
+          img {
+            height: 50%;
+          }
+        }
+      }
+      .articles {
+        .inner-articles {
+          .title-articles {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            .title {
+              padding: 0 20px;
+              @include centering;
+              font-size: 22px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    margin-bottom: 70px;
+    .company {
+      .up {
+        font-size: 12px;
+      }
+      .down {
+        font-size: 12px;
+      }
+    }
+  }
+}
+@media (max-width: 450px) {
+  .header {
+    .cart-menu {
+      .inner-cart-menu {
+        .content-cart {
+          .card-cart {
+            .inner-card-cart {
+              .price {
+                font-size: 0.6em;
+              }
+            }
+          }
+        }
+        .price-cart {
+          .all-price {
+            font-size: 0.8em;
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    margin-bottom: 70px;
+    .company {
+      .up {
+        font-size: 10px;
+      }
+      .down {
+        font-size: 10px;
+      }
+    }
+  }
+}

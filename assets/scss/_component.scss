@@ -1,0 +1,280 @@
+@import "./variables";
+@import "./colors";
+
+.centering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-product {
+  height: 100%;
+  border-radius: $border-radius-one;
+  background-color: $color-text;
+  padding: 5px;
+  .row {
+    height: 100%;
+  }
+  .image-card {
+    height: 100%;
+    img {
+      height: 100%;
+    }
+  }
+  .price-card {
+    font-size: 16px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 80%;
+
+    .view {
+      img {
+        width: 40%;
+      }
+    }
+    .off {
+      .inner-off {
+        padding: 2px 4px;
+        background-color: red;
+        border-radius: 10px;
+        font-weight: bold;
+        color: $color-text;
+      }
+    }
+    .off-price {
+      font-weight: bold;
+    }
+    .price {
+      text-decoration: line-through;
+      color: $color-secondary;
+    }
+  }
+  .title-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+
+    .name-product {
+      font-size: 14px;
+    }
+    .btn-product {
+      width: 100%;
+
+      button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row-reverse;
+        padding: 5px 10px;
+        font-size: 12px;
+        border: none;
+        width: 100%;
+        border-radius: 30px;
+        text-align: left;
+        position: relative;
+        z-index: 1;
+        color: $color-text;
+        background-color: $color-btn-three;
+        span {
+          font-weight: bold;
+        }
+        &::after {
+          content: "";
+          display: block;
+          width: 80%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-color: $color-primary;
+          border-radius: 30px;
+          z-index: -1;
+        }
+      }
+    }
+    .btns-product {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      img {
+        width: 14px;
+        transition: all 500ms;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+.swiper-slide {
+  &:nth-child(odd) {
+    .card-article {
+      .overlay {
+        background-color: rgba($color-primary, 0.5);
+      }
+      .btn-article {
+        a {
+         
+          &:hover {
+            box-shadow: 0px 1px 11px -1px $color-text;
+          }
+        }
+      }
+    }
+  }
+  &:nth-child(even) {
+    .card-article {
+      .overlay {
+        background-color: rgba(236, 240, 241, 0.9);
+      }
+      .title {
+        color: $color-primary;
+      }
+      .des-article {
+        color: $color-primary;
+      }
+      .date {
+        color: $color-primary;
+      }
+      .btn-article {
+        a {
+          background-color: $color-primary;
+          color: $color-text;
+          &:hover {
+            box-shadow: 0px 1px 15px -1px $color-primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+.card-article {
+  max-width: 300px;
+  height: 550px;
+  padding: 10px;
+  border-radius: $border-radius-one;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("../images/سایت-دکتر-دوستی-شعار_0031_AdobeStock_271247232.png");
+  background-size: cover;
+  position: relative;
+  transition: all 200ms;
+  &:hover{
+    transform: scale(1.02);
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: $border-radius-one;
+    border: $border-six;
+    z-index: 1;
+    box-shadow: 0px 1px 11px -1px #000000;
+  }
+  .image-card {
+    img {
+      border: $border-six;
+      border-radius: $border-radius-one;
+      width: 100%;
+    }
+
+    z-index: 2;
+  }
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 2;
+    color: $color-text;
+  }
+  .des-article {
+    font-size: 14px;
+    line-height: 1.2rem;
+    z-index: 2;
+    color: $color-text;
+  }
+  .down-article {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    z-index: 2;
+    .date {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      flex-direction: column;
+      font-size: 10px;
+      color: $color-text;
+    }
+    .btn-article {
+      a {
+        padding: 8px 15px;
+        background-color: $color-text;
+        border-radius: $border-radius-two;
+        color: $color-primary;
+        transition: 500ms all;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .card-product {
+    .price-card {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .card-product {
+    .price-card {
+      font-size: 12px;
+    }
+  }
+}
+@media (max-width: 500px) {
+  .card-product {
+    .price-card {
+      font-size: 9px;
+      height: 100%;
+    }
+    .title-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      height: 100%;
+
+      .name-product {
+        font-size: 8px;
+      }
+      .btn-product {
+        width: 100%;
+
+        button {
+          padding: 5px 10px;
+          font-size: 8px;
+        }
+      }
+      .btns-product {
+        font-size: 8px;
+        img {
+          width: 10px;
+        }
+      }
+    }
+  }
+}
